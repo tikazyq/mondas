@@ -1,8 +1,8 @@
 mondas
 ======
-mondas (pymongo + pandas) allows you to easily query, transform and aggregate JSON formatted data from MongoDB into structured, tabular data, which would save much of your time on cleansing, wraggling and munging those data.
+mondas allows you to easily query, transform and aggregate JSON formatted data from MongoDB into structured, tabular data, which would save much of your time on cleansing, wraggling and munging those data.
 
-Downloads
+Prerequisites
 ======
 pandas: https://pypi.python.org/pypi/pandas#downloads
 
