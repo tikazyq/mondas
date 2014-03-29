@@ -52,7 +52,7 @@ db.zips.find({state: 'NY'}, {state:1, pop:1, city:1});
 ```
 
 Aggregation example: find top 10 cities with most population
-```javascript
+```python
 from mondas import AggregationFramework
 
 ag = AggregationFramework()
