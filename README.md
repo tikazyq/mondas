@@ -15,7 +15,7 @@ MongoDB: http://www.mongodb.org/downloads
 Example
 ======
 A simple query the database. 
-```
+```python
 from mondas import Mongo
 
 m = Mongo()
@@ -43,7 +43,7 @@ print(m.res[:10])
 ```
 
 Mongo shell equavalent (when connecting to localhost and test database).
-```
+```javascript
 var data = [];
 db.zips.find({state: 'NY'}, {state:1, pop:1, city:1}).forEach(function(x) {
      var row = {};
