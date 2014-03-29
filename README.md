@@ -49,11 +49,11 @@ var data = [];
 db.zips.find({state: 'NY'}, {state:1, pop:1, city:1}).forEach(function(x) {
      var row = {};
      for(var i in x) {
-          if(x.hasOwnProperty(i) {
+          if(x.hasOwnProperty(i)) {
                row[i] = x[i];
           }
      }
      data.push(row);
 });
-print(data);
+printjson(data.slice(0, 10));
 ```
