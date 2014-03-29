@@ -9,9 +9,7 @@ Author: yeqing
 
 """
 
-import os
 from pymongo import MongoClient
-import pandas as pd
 from pandas import DataFrame as df
 import re
 
