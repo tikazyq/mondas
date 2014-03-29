@@ -87,7 +87,7 @@ print(ag.res)
 9        DALLAS    TX   940191
 ```
 mongo shell equivalent
-```
+```javascript
 var res = db.zips.aggregate(
 {
     $group: {
