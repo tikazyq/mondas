@@ -12,15 +12,16 @@ MongoDB: http://www.mongodb.org/downloads
 
 Example
 ======
-
+A simple query the database. 
 ```
 from mondas import Mongo
 
 m = Mongo()
-m.set_connection('localhost:27017')
+# m.set_connection('localhost')  # default 'localhost'
+# m.set_db('test')  # default 'test'
 m.set_col('zips')
 
-m.add_query({'state': "NY"})
+m.add_query({'state': 'NY'})
 m.add_project({'state':1, 'pop':1, 'city':1})
 m.run()
 
@@ -37,4 +38,19 @@ print(m.res[:10])
 7  10007          NEW YORK   3374    NY
 8  10009          NEW YORK  57426    NY
 9  10010          NEW YORK  24907    NY
+```
+
+Mongo shell equavalent (when connecting to localhost and test database).
+```
+var data = [];
+db.zips.find({state: 'NY'}, {state:1, pop:1, city:1}).forEach(function(x) {
+     var row = {};
+     for(var i in x) {
+          if(x.hasOwnProperty(i) {
+               row[i] = x[i];
+          }
+     }
+     data.push(row);
+});
+print(data);
 ```
