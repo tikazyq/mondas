@@ -7,7 +7,9 @@ python pandas can be a way to reduce ease the pain.
 mondas allows you to easily retrieve and aggregate data from MongoDB, ultimately increase analysis productivity.
 
 pandas: https://pypi.python.org/pypi/pandas#downloads
+
 pymongo: http://api.mongodb.org/python/current/installation.html
+
 MongoDB: http://www.mongodb.org/downloads
 
 Example
