@@ -14,7 +14,7 @@ MongoDB: http://www.mongodb.org/downloads
 
 Example
 ======
-A simple query the database. 
+A simple query to the database. 
 ```python
 from mondas import Mongo
 
