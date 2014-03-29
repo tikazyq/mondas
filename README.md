@@ -26,7 +26,6 @@ m.run()
 
 print(m.res[:10])
 
-```
      _id              city    pop state
 0  06390    FISHERS ISLAND    329    NY
 1  10001          NEW YORK  18913    NY
@@ -38,4 +37,4 @@ print(m.res[:10])
 7  10007          NEW YORK   3374    NY
 8  10009          NEW YORK  57426    NY
 9  10010          NEW YORK  24907    NY
-
+```
