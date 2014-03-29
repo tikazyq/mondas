@@ -1,18 +1,21 @@
 mondas
 ======
 
-MongoDB is a popular NoSQL database but not support JOIN. 
-python pandas can be a way to reduce ease the pain. 
+MongoDB is a popular NoSQL database which support fast write/read. However, it does not support JOIN, which will be a pain when most of your work requires querying MongoDB. Furthermore, MongoDB's JSON formatted, unstructured data model is not ideal for data analysis.
 
-mondas allows you to easily retrieve and aggregate data from MongoDB, ultimately increase analysis productivity.
+pandas is a Python package providing fast, flexible, and expressive data structures designed to make working with structured (tabular, multidimensional, potentially heterogeneous) and time series data both easy and intuitive.
 
+mondas (pymongo + pandas) allows you to easily query, transform and aggregate JSON formatted data from MongoDB into structured, tabular data, which would save much of your time on cleansing, wraggling and munging those data.
+
+Downloads
+======
 pandas: https://pypi.python.org/pypi/pandas#downloads
 
 pymongo: http://api.mongodb.org/python/current/installation.html
 
 MongoDB: http://www.mongodb.org/downloads
 
-Example
+Examples
 ======
 A simple query to the database. 
 ```python
