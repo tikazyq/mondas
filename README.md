@@ -94,7 +94,7 @@ var res = db.zips.aggregate(
     $group: {
         _id: {
             city: '$city',
-            city: '$state'
+            state: '$state'
         },
         pop: {$sum: '$pop'}
     }
