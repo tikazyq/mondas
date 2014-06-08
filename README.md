@@ -1,8 +1,5 @@
 mondas
 ======
-
-MongoDB is a popular NoSQL database which support fast write/read. However, it does not support JOIN, which will be a pain when most of your work requires querying MongoDB. Furthermore, MongoDB's JSON formatted, unstructured data model is not ideal for data analysis.
-
 mondas (pymongo + pandas) allows you to easily query, transform and aggregate JSON formatted data from MongoDB into structured, tabular data, which would save much of your time on cleansing, wraggling and munging those data.
 
 Downloads
@@ -90,7 +87,7 @@ print(ag.res)
 9        DALLAS    TX   940191
 ```
 mongo shell equivalent
-```
+```javascript
 var res = db.zips.aggregate(
 {
     $group: {

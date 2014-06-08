@@ -1,4 +1,4 @@
-#!/usr/bin/python
+# !/usr/bin/python
 """
 Description:
 MongoDB related classes.
@@ -14,6 +14,18 @@ from pandas import DataFrame as df
 import re
 
 
+def flatten_dict(d, separator='.', prefix=''):
+    """
+    @param d:
+    @param separator:
+    @param prefix:
+    """
+    return {prefix + separator + k if prefix else k: v
+            for kk, vv in d.items()
+            for k, v in flatten_dict(vv, separator, kk).items()
+    } if isinstance(d, dict) else {prefix: d}
+
+
 class Mongo:
     """
     create a Mongo instance
@@ -26,7 +38,6 @@ class Mongo:
         self.connection = 'localhost:27017'
         self.db_name = "test"
         self.col_name = None
-        self.client = MongoClient(self.connection)
         self.db = self.client[self.db_name]
         self.col = None
         self.query = {}
@@ -66,12 +77,18 @@ class Mongo:
             print("added query %s" % params)
 
     def add_project(self, params):
+        """
+        @param params: {list|dict}
+        """
         if str(type(params)) == "<type 'list'>":
             for key in params:
                 self.project[key] = 1
         else:
             for key in params:
                 self.project[key] = params[key]
+        for key in self.project:
+            if self.project[key] != 0:
+                self.fields.append(key)
         if not self.quiet:
             print("added project %s" % params)
 
@@ -94,7 +111,7 @@ class Mongo:
 
     def __is_json_column(self, data, column):
         return str(data[column].dtype) == 'object' \
-            and str(type(data[column][0])) == "<type 'dict'>"
+               and str(type(data[column][0])) == "<type 'dict'>"
 
     def __get_json_column(self, data):
         ret = None
@@ -120,21 +137,37 @@ class Mongo:
             self.__get_unwrapped_columns()
 
     def __cleanup(self):
-        self.__get_unwrapped_columns()
+        # self.__get_unwrapped_columns()
+        self.query = {}
+        self.project = {}
 
-    def run(self):
+    def run(self, flatten=True):
         if not self.quiet:
             print("running with collection: %s, query: %s, project: %s" % (str(self.col), self.query, self.project))
         c = self.col.find(self.query, self.project)
         self.res = []
         for item in c:
-            self.res.append(item)
+            if flatten:
+                self.res.append(flatten_dict(item))
+            else:
+                self.res.append(item)
         self.res = df(self.res)
-        # self.__cleanup()
+        self.__cleanup()
 
     def set_quiet(self, value):
         self.quiet = value
         print("quiet is set to %s", value)
+
+    def update(self, spec, doc, upsert=True):
+        self.col.update(
+            spec,
+            doc,
+            upsert
+        )
+
+    def preview(self):
+        print(self.res[:10])
+        print(self.res.describe())
 
 
 class AggregationFramework(Mongo):
@@ -329,10 +362,10 @@ class MongoHistogram(AggregationFramework):
 
 
 def main():
-    # ag = AggregationFramework()
-    # ag.test()
-    h = MongoHistogram()
-    h.test()
+    ag = AggregationFramework()
+    ag.test()
+    # h = MongoHistogram()
+    # h.test()
 
 
 if __name__ == "__main__":
