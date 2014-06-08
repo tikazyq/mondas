@@ -1,9 +1,5 @@
 mondas
 ======
-mondas (pymongo + pandas) allows you to easily query, transform and aggregate JSON formatted data from MongoDB into structured, tabular data, which would save much of your time on cleansing, wraggling and munging those data.
-
-Downloads
-======
 pandas: https://pypi.python.org/pypi/pandas#downloads
 
 pymongo: http://api.mongodb.org/python/current/installation.html
@@ -13,6 +9,7 @@ mongodb: http://www.mongodb.org/downloads
 Examples
 ======
 The examples below will work on zip code data set provided by mongodb.org. Please follow the guide to import into mongodb.
+
 Link: http://docs.mongodb.org/manual/tutorial/aggregation-zip-code-data-set/
 
 A simple query to the database. 
@@ -51,7 +48,7 @@ db.zips.find({state: 'NY'}, {state:1, pop:1, city:1});
 ```
 
 Aggregation example: find top 10 cities with most population
-```javascript
+```python
 from mondas import AggregationFramework
 
 ag = AggregationFramework()
@@ -93,7 +90,7 @@ var res = db.zips.aggregate(
     $group: {
         _id: {
             city: '$city',
-            city: '$state'
+            state: '$state'
         },
         pop: {$sum: '$pop'}
     }
